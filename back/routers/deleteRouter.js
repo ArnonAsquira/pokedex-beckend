@@ -1,16 +1,14 @@
 const express = require('express');
 const Router = express.Router();
 const fs = require('fs');
+const errHandlingMiddlwear = require('../middlewars/errorHandler');
 const Pokedex = require('pokedex-promise-v2');
 const P = new Pokedex();
 
 Router.use(express.json()) 
 
 
-
-module.exports = Router;
-
-Router.delete('/:id', (req, res) => {
+Router.delete('/:id', (req, res, next) => {s
     const id = req.params.id;
     console.log(id);
     try{
@@ -21,8 +19,12 @@ Router.delete('/:id', (req, res) => {
         }
         throw 'error'
     } catch (error) {
-        console.log(error);
-        res.status(403).send('pokemon was not caught') ;
+        console.log('this pokemon was not caught');
+        next(error);
+        // res.status(403).send('pokemon was not caught') ;
     }
-    // res.send('pokemon caught');
 })
+
+Router.use(errHandlingMiddlwear);
+
+module.exports = Router;

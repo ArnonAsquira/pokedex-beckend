@@ -6,11 +6,12 @@ const getRouter = require('./routers/pokemonRouter');
 const putRouter = require('./routers/putRouters');
 const deleteRouter = require('./routers/deleteRouter');
 const infoRouter =require('./routers/userRouter');
-const verifyUsernameMID = require('./middlewear');
+const verifyUsernameMID = require('./middlewars/middlewear');
+const errHandlingMiddlwear = require('./middlewars/errorHandler');
 const port = 3000;
 
-
 const app = express();
+
 app.use(verifyUsernameMID);
 
 app.use(cors({
@@ -28,6 +29,11 @@ app.use('/pokemon/catch/', putRouter);
 app.use('/pokemon/release', deleteRouter);
 
 app.use('/info', infoRouter);
+
+app.use(function(err, req, res, next) {
+    console.log('reached error handler in server.js');
+    res.status(500).send(err);
+});
 
 app.listen(port, (error) => {
     if(error) {

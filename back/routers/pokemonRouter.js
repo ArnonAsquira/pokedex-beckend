@@ -2,16 +2,20 @@ const express = require('express');
 const Router = express.Router();
 const Pokedex = require('pokedex-promise-v2');
 const fs = require('fs');
+const errHandlingMiddlwear = require('../middlewars/errorHandler');
 const P = new Pokedex();
 
 Router.use(express.json()) // parses requests as json
 
-Router.get('/get/:id', (req, res) => {
-  console.log(req.params.id)
-    P.getPokemonByName(req.params.id)
-    .then(response => {
+Router.get('/get/:id', async (req, res, next) => {
+      // searches the required pokemon via its ID
+      try {
+        const response = await P.getPokemonByName(req.params.id);
         res.json({name: response.name, heigth: response.height, weight: response.weight, types: response.types, abilities: response.abilities, front_pic: response.sprites["front_default"], back_pic:response.sprites["front_default"]})
-    })
+        return;
+      }catch(error) {
+        next(error);
+      }
 })
 Router.get('/query', (req, res) => {
   console.log(req.body);
@@ -35,5 +39,10 @@ Router.get('/', (req, res) => {
   }
 })
 
+// Router.use(function(err, req, res, next) {
+//   res.status(500).json({ message: 'An error occured'})
+// });
+
+Router.use(errHandlingMiddlwear);
 
 module.exports = Router;
