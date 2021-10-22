@@ -10,7 +10,7 @@ Router.put('/:id', async (req, res) => {
     const id = req.params.id;
     console.log(id);
     try{
-        if(fs.readdirSync(`./user./${req.headers.username}/${id}`)) {
+        if(fs.readFileSync(`C:\\Users\\arnon\\OneDrive\\מסמכים\\GitHub\\pokedex-beckend\\back\\user\\Arnon/${id}.json`)) {
             res.send('pokemon already caught');
             return;
         }

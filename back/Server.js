@@ -3,15 +3,15 @@ var Pokedex = require('pokedex-promise-v2');
 var P = new Pokedex();
 const cors = require('cors');
 const getRouter = require('./routers/pokemonRouter');
-const putRouter = require('./routers/putRouters')
+const putRouter = require('./routers/putRouters');
+const deleteRouter = require('./routers/deleteRouter');
+const infoRouter =require('./routers/userRouter');
 const verifyUsernameMID = require('./middlewear');
 const port = 3000;
 
 
 const app = express();
 app.use(verifyUsernameMID);
-
-// app.use(express.json()) // parses requests as json
 
 app.use(cors({
     origin: '*'
@@ -21,8 +21,13 @@ app.use('/pokemon/', getRouter);
 
 app.use('/pokemon/', getRouter);
 
+app.use('/pokemon/',  getRouter)
+
 app.use('/pokemon/catch/', putRouter);
 
+app.use('/pokemon/release', deleteRouter);
+
+app.use('/info', infoRouter);
 
 app.listen(port, (error) => {
     if(error) {
