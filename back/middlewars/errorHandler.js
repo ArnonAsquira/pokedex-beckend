@@ -11,6 +11,9 @@ const P = new Pokedex();
         res.status(403).send('pokemon was not caught');
         return;
     }
+    if(req.method === "PUT") [
+        res.status(403).send('pokemon already caught or doesnt exsist')
+    ]
 
     res.status(500).send('an error occured')
 }
