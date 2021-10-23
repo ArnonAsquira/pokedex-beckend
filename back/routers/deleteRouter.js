@@ -1,6 +1,7 @@
 const express = require('express');
 const Router = express.Router();
 const fs = require('fs');
+const path = require('path');
 const errHandlingMiddlwear = require('../middlewars/errorHandler');
 const Pokedex = require('pokedex-promise-v2');
 const P = new Pokedex();
@@ -11,8 +12,8 @@ Router.use(express.json())
 Router.delete('/:id', (req, res, next) => {
     const id = req.params.id;
     try{
-        if(fs.readFileSync(`C:\\Users\\arnon\\OneDrive\\מסמכים\\GitHub\\pokedex-beckend\\back\\user\\Arnon/${id}.json`)) {
-            fs.unlinkSync(`C:\\Users\\arnon\\OneDrive\\מסמכים\\GitHub\\pokedex-beckend\\back\\user\\Arnon/${id}.json`);
+        if(fs.readFileSync(path.resolve(__dirname, `../user/${req.headers.username}/${id}.json`))) {
+            fs.unlinkSync(path.resolve(__dirname, `../user/${req.headers.username}/${id}.json`));
             res.send('pokemon released');
             return;
         }
@@ -20,7 +21,6 @@ Router.delete('/:id', (req, res, next) => {
     } catch (error) {
         console.log('this pokemon was not caught');
         next(error);
-        // res.status(403).send('pokemon was not caught') ;
     }
 })
 
