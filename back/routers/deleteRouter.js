@@ -8,9 +8,8 @@ const P = new Pokedex();
 Router.use(express.json()) 
 
 
-Router.delete('/:id', (req, res, next) => {s
+Router.delete('/:id', (req, res, next) => {
     const id = req.params.id;
-    console.log(id);
     try{
         if(fs.readFileSync(`C:\\Users\\arnon\\OneDrive\\מסמכים\\GitHub\\pokedex-beckend\\back\\user\\Arnon/${id}.json`)) {
             fs.unlinkSync(`C:\\Users\\arnon\\OneDrive\\מסמכים\\GitHub\\pokedex-beckend\\back\\user\\Arnon/${id}.json`);

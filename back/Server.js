@@ -12,21 +12,18 @@ const port = 3000;
 
 const app = express();
 
-app.use(verifyUsernameMID);
-
 app.use(cors({
     origin: '*'
 }));
 
-app.use('/pokemon/', getRouter);
+app.use(verifyUsernameMID);
+
 
 app.use('/pokemon/', getRouter);
-
-app.use('/pokemon/',  getRouter)
 
 app.use('/pokemon/catch/', putRouter);
 
-app.use('/pokemon/release', deleteRouter);
+app.use('/pokemon/release/', deleteRouter);
 
 app.use('/info', infoRouter);
 
