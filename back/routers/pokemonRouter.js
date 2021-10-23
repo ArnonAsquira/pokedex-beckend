@@ -4,7 +4,6 @@ const Pokedex = require('pokedex-promise-v2');
 const fs = require('fs');
 const path = require('path');
 const errHandlingMiddlwear = require('../middlewars/errorHandler');
-const { dirname } = require('path');
 const P = new Pokedex();
 
 Router.use(express.json()) // parses requests as json
@@ -29,10 +28,10 @@ Router.get('/query', (req, res) => {
 
 Router.get('/', (req, res) => {
   try {
-    const userNameDir = fs.readdirSync(`C:\\Users\\arnon\\OneDrive\\מסמכים\\GitHub\\pokedex-beckend\\back\\user\\/${req.headers.username}`);
+    const userNameDir = fs.readdirSync(path.resolve(__dirname, `../user/${req.headers.username}`));
     let body = [];
     userNameDir.forEach(file => {
-      body.push(fs.readFileSync(`C:\\Users\\arnon\\OneDrive\\מסמכים\\GitHub\\pokedex-beckend\\back\\user\\/${req.headers.username}/${file}`, 'utf-8'));
+      body.push(fs.readFileSync(path.resolve(__dirname, `../user/${req.headers.username}/${file}`) , 'utf-8'));
     })
     res.send(body);
   }catch(error) {
