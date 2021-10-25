@@ -19,6 +19,7 @@ Router.delete('/:id', (req, res, next) => {
         }
         throw 'error'
     } catch (error) {
+        console.log(req.params.id);
         console.log('this pokemon was not caught');
         next(error);
     }
