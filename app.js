@@ -20,18 +20,18 @@ app.use(cors({
 
 // app.use(verifyUsernameMID);
 
-// app.use('/pokemon/', getRouter);
+app.use('/pokemon/', getRouter);
 
-// app.use('/pokemon/catch/', putRouter);
+app.use('/pokemon/catch/', putRouter);
 
-// app.use('/pokemon/release/', deleteRouter);
+app.use('/pokemon/release/', deleteRouter);
 
-// app.use('/info', infoRouter);
+app.use('/info', infoRouter);
 
-// app.use(function(err, req, res, next) {
-//     console.log('reached error handler in server.js');
-//     res.status(500).send(err);
-// });
+app.use(function(err, req, res, next) {
+    console.log('reached error handler in server.js');
+    res.status(500).send(err);
+});
 
 app.use('/', express.static(path.resolve('./dist'))); // serve main path as static dir
 
