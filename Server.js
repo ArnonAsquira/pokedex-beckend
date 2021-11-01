@@ -32,10 +32,10 @@ app.use(cors({
 //     res.status(500).send(err);
 // });
 
-app.use('/', express.static(path.resolve(__dirname, './front/dist/')));
+app.use('/', express.static(path.resolve(__dirname, '/front/dist/')));
 
  app.get('/', (req, res) => {
-    res.status(200).sendFile(path.resolve(__dirname, './front/dist/index.html'))
+    res.status(200).sendFile(path.resolve(__dirname, '/front/dist/index.html'))
 })
 
 app.listen(port, (error) => {
