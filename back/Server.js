@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 var Pokedex = require('pokedex-promise-v2');
 var P = new Pokedex();
 const cors = require('cors');
@@ -18,7 +19,6 @@ app.use(cors({
 
 app.use(verifyUsernameMID);
 
-
 app.use('/pokemon/', getRouter);
 
 app.use('/pokemon/catch/', putRouter);
@@ -32,7 +32,14 @@ app.use(function(err, req, res, next) {
     res.status(500).send(err);
 });
 
-app.listen(port, (error) => {
+
+app.use('/', express.static(path.resolve(__dirname, './front/dist/')));
+
+app.get('/', (req, res) => [
+    res.sendFile(path.resolve(__dirname, './front/dist/index.html'))
+])
+
+app.listen(process.env.PORT || port, (error) => {
     if(error) {
         console.log(error);
         return;
