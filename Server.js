@@ -33,11 +33,11 @@ app.use(cors({
 //     res.status(500).send(err);
 // });
 
-app.use('/', express.static(path.resolve(__dirname, './dist')));
+app.use('/', express.static(path.resolve('./dist'))); // serve main path as static dir
 
- app.get('/', (req, res) => {
-    res.status(200).sendFile(path.resolve(__dirname, './dist/index.html'))
-})
+app.get('/', function(req, res) { // serve main path as static file
+  res.sendFile(path.resolve('./dist/index.html'))
+});
 
 app.listen(port, (error) => {
     if(error) {
