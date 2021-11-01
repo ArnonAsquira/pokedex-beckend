@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const fs = require('fs');
 var Pokedex = require('pokedex-promise-v2');
 var P = new Pokedex();
 const cors = require('cors');
@@ -36,12 +37,8 @@ app.use(function(err, req, res, next) {
 app.use('/', express.static(path.resolve('./dist'))); // serve main path as static dir
 
 app.get('/', function(req, res) { // serve main path as static file
-  res.sendFile(path.resolve('./dist/index.html'))
+  res.sendFile(path.resolve('./dist/index.html'));
 });
-
-// app.get('/' , (req, res) => {
-//     res.status(200).send('ok');
-// });
 
 
 app.listen(port, (error) => {
@@ -50,4 +47,5 @@ app.listen(port, (error) => {
         return;
     }
     console.log(`listening on port ${port}`);
+    console.log(fs.readFileSync((path.resolve('./dist/index.html'))));
 });
