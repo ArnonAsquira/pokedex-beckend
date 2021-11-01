@@ -33,11 +33,11 @@ app.use(function(err, req, res, next) {
 });
 
 
-// app.use('/', express.static(path.resolve(__dirname, './front/dist/')));
+app.use('/', express.static(path.resolve(__dirname, './front/dist/')));
 
-//  app.get('/', (req, res) => [
-//     res.sendFile(path.resolve(__dirname, './front/dist/index.html'))
-// ])
+ app.get('/', (req, res) => [
+    res.sendFile(path.resolve(__dirname, './front/dist/index.html'))
+])
 
 app.listen(process.env.PORT || port, (error) => {
     if(error) {
