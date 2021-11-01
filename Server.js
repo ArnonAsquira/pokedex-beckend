@@ -9,7 +9,7 @@ const deleteRouter = require('./back/routers/deleteRouter');
 const infoRouter =require('./back/routers/userRouter');
 const verifyUsernameMID = require('./back/middlewars/middlewear');
 const errHandlingMiddlwear = require('./back/middlewars/errorHandler');
-const port = process.env.PORT ||3000;
+const port = process.env.PORT || 3000;
 
 const app = express();
 
@@ -35,7 +35,7 @@ app.use(cors({
 app.use('/', express.static(path.resolve(__dirname, './front/dist/')));
 
  app.get('/', (req, res) => {
-    res.sendFile(path.resolve(__dirname, './front/dist/index.html'))
+    res.status(200).sendFile(path.resolve(__dirname, './front/dist/index.html'))
 })
 
 app.listen(port, (error) => {
