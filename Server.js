@@ -9,7 +9,7 @@ const deleteRouter = require('./back/routers/deleteRouter');
 const infoRouter =require('./back/routers/userRouter');
 const verifyUsernameMID = require('./back/middlewars/middlewear');
 const errHandlingMiddlwear = require('./back/middlewars/errorHandler');
-const port = 3000;
+const port = process.env.PORT ||3000;
 
 const app = express();
 
@@ -38,7 +38,7 @@ app.use('/', express.static(path.resolve(__dirname, './front/dist/')));
     res.sendFile(path.resolve(__dirname, './front/dist/index.html'))
 ])
 
-app.listen(process.env.PORT || port, (error) => {
+app.listen(port, (error) => {
     if(error) {
         console.log(error);
         return;
