@@ -2,11 +2,13 @@
   "name": "back",
   "version": "1.0.0",
   "description": "",
-  "main": "Server.js",
+  "main": "server.js",
+  "engines": {
+    "node": "14.x.x"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node Server.js",
-    "watch": "nodemon ./server.js"
+    "start": "node server.js"
   },
   "keywords": [],
   "author": "",
