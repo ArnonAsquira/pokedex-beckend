@@ -6,7 +6,7 @@ const cors = require('cors');
 const getRouter = require('./back/routers/pokemonRouter');
 const putRouter = require('./back/routers/putRouters');
 const deleteRouter = require('./back/routers/deleteRouter');
-const infoRouter =require('./back/routers/userRouter');
+const infoRouter = require('./back/routers/userRouter');
 const verifyUsernameMID = require('./back/middlewars/middlewear');
 const errHandlingMiddlwear = require('./back/middlewars/errorHandler');
 const port = process.env.PORT || 3000;
@@ -41,7 +41,8 @@ app.use(cors({
 
 app.get('/' , (req, res) => {
     res.status(200).send('ok');
-})
+});
+
 
 app.listen(port, (error) => {
     if(error) {
