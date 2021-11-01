@@ -33,9 +33,9 @@ app.use(cors({
 //     res.status(500).send(err);
 // });
 
-app.use('/', express.static(path.resolve(__dirname, './dist/')));
+app.use('', express.static(path.resolve(__dirname, './dist/')));
 
- app.get('/', (req, res) => {
+ app.get('', (req, res) => {
     res.status(200).sendFile(path.resolve(__dirname, './dist/index.html'))
 })
 
