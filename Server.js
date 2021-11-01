@@ -9,7 +9,7 @@ const deleteRouter = require('./back/routers/deleteRouter');
 const infoRouter =require('./back/routers/userRouter');
 const verifyUsernameMID = require('./back/middlewars/middlewear');
 const errHandlingMiddlwear = require('./back/middlewars/errorHandler');
-const port = process.env.PORT // || 3000;
+const port = process.env.PORT || 3000;
 
 const app = express();
 
