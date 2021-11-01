@@ -32,7 +32,6 @@ app.use(function(err, req, res, next) {
     res.status(500).send(err);
 });
 
-
 app.use('/', express.static(path.resolve(__dirname, './front/dist/')));
 
  app.get('/', (req, res) => [
