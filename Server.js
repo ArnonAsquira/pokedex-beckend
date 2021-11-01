@@ -17,7 +17,7 @@ app.use(cors({
     origin: '*'
 }));
 
-app.use(verifyUsernameMID);
+// app.use(verifyUsernameMID);
 
 app.use('/pokemon/', getRouter);
 
