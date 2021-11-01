@@ -34,7 +34,7 @@ app.use(function(err, req, res, next) {
     res.status(500).send(err);
 });
 
-app.use('/', express.static(path.resolve('./dist'))); // serve main path as static dir
+app.use('/', express.static(path.resolve(__dirname, './dist'))); // serve main path as static dir
 
 app.get('/', function(req, res) { // serve main path as static file
   res.sendFile(path.resolve('./dist/index.html'));
@@ -47,5 +47,4 @@ app.listen(port, (error) => {
         return;
     }
     console.log(`listening on port ${port}`);
-    console.log(fs.readFileSync((path.resolve('./dist/index.html'))));
 });
